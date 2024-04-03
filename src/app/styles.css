@@ -1,0 +1,176 @@
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.homeText-enter {
+  opacity: 0;
+  transform: scale(0.9);
+}
+
+.homeText-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 300ms, transform 300ms;
+}
+
+.homeText-exit {
+  opacity: 1;
+}
+
+.homeText-exit-active {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 300ms, transform 300ms;
+}
+
+.fade2-appear {
+  opacity: 0;
+  transform: scale(0);
+}
+
+.fade2-appear.fade2-appear-active {
+  opacity: 1;
+  transform: scale(1);
+  transition: all 5s;
+}
+
+/* enter */
+.fade2-enter {
+  opacity: 0;
+}
+
+.fade2-enter.fade2-enter-active {
+  opacity: 1;
+  transition: all 5s;
+}
+
+/* exit */
+.fade2-exit {
+  opacity: 1;
+}
+
+.fade2-exit.fade2-exit-active {
+  opacity: 0;
+  transition: opacity 5000ms linear;
+}
+
+.fade2-exit-done {
+  opacity: 0;
+}
+
+:root {
+  --swiper-theme-color: #fff !important;
+}
+
+.ken {
+  background-color: white;
+}
+
+.ken img {
+  animation: kenburns 9s infinite;
+}
+
+@keyframes kenburns {
+  0% {
+    opacity: 0;
+    transform: scale3d(1, 1, 1);
+    animation-timing-function: ease-out;
+  }
+
+  5% {
+    opacity: 0.5;
+  }
+
+  15% {
+    opacity: 1;
+  }
+
+  95% {
+    transform: scale3d(1.5, 1.5, 1.5);
+    animation-timing-function: ease-in;
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale3d(1.6, 1.6, 1.6);
+    opacity: 0;
+  }
+}
+
+.testAnimSlideIn {
+  animation: slideUp 2.2s;
+}
+
+@keyframes slideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+
+  50% {
+    transform: translateY(0%);
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.testAnimSlideOut {
+  animation: slideOut 2.2s;
+}
+
+@keyframes slideOut {
+  0% {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+
+  50% {
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(-100%);
+  }
+}
+
+.homeTexts {
+  position: absolute;
+  top: 45%;
+  /* text-transform: uppercase; */
+}
+
+.testUp {
+  animation: testUp 1s;
+}
+
+@keyframes testUp {
+  0% {
+    opacity: 0;
+    transform: translateX(-20%);
+  }
+
+  95% {
+    opacity: 1;
+    animation-timing-function: ease-in;
+  }
+
+  100% {
+    transform: translateX(-0%);
+  }
+}
+
+.jobsImage {
+  width: "100%";
+  height: "auto" !important;
+}

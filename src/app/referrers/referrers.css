@@ -1,0 +1,7 @@
+.custom-a {
+  color: #666 !important;
+}
+
+.custom-a:hover {
+  color: blue !important;
+}
