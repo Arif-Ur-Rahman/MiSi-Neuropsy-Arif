@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import "@/app/page.module.css";
 import "@/app/booking.css";
 import "@/app/embala.css";
@@ -12,14 +12,15 @@ import { BiLeftArrowAlt, BiRightArrowAlt } from "react-icons/bi";
 import Link from "next/link";
 import LanguageDropdown from "../components/header/LanguageDropdown";
 
-const page = () => {
+const Page = () => {
+  const router = useRouter();
   return (
     <div>
       <div className="d-flex align-items-center justify-content-between">
         <div className="d-flex align-items-center" style={{ fontSize: "3rem" }}>
           <div
             className="btn btn-link"
-            onClick={() => router && router.back()}
+            onClick={() => router.back()}
             style={{ fontSize: "3rem" }}
           >
             {" "}
@@ -147,4 +148,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

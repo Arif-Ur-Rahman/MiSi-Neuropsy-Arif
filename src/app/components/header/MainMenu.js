@@ -9,20 +9,19 @@ import "@/app/IdealBankSectionStyles.css";
 import "@/app/responsive.css";
 import "@/app/styles.css";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { FaPhoneAlt } from "react-icons/fa";
 import imageLogoBig from "@/../../public/images/misilogo.png";
 import menuIcon from "@/../../public/images/buttons/menu.svg";
 import closeIcon from "@/../../public/images/buttons/close.svg";
 import useMobileDetect from "../mobileDetect/useMobileDetect";
 
-const MainMenu = (device, isSlider) => {
+const MainMenu = ({ device = "mobile", isSlider = false }) => {
   const [menuPresent, setMenuPresent] = useState(false);
   const mainMenuRef = useRef(null);
   const topRowRef = useRef(null);
   const navbarBrandImgRef = useRef(null);
-  const router = useRouter();
-  const path = router.pathname;
+  const path = usePathname();
 
   const currentDevice = useMobileDetect();
 
@@ -52,6 +51,7 @@ const MainMenu = (device, isSlider) => {
     if (window.location.pathname === "/") {
       hideMenu();
     }
+    return () => document.removeEventListener("scroll", navbarShrink);
   }, []);
   const hideMenu = () => {
     document.getElementById("navFade").style.transition =
@@ -60,6 +60,9 @@ const MainMenu = (device, isSlider) => {
     document.getElementById("navFade").style.transform = "translateX(150%)";
     setMenuPresent(false);
   };
+
+  const navLinkClass = (href) =>
+    path === href ? "nav-link active fLoto" : "nav-link fLoto";
 
   const showMenu = () => {
     document.getElementById("navFade").style.transition =
@@ -138,22 +141,22 @@ const MainMenu = (device, isSlider) => {
                   style={{ textTransform: "uppercase" }}
                 >
                   <li className="nav-item">
-                    <Link className={"nav-link active fLoto"} href="/">
+                    <Link className={navLinkClass("/")} href="/">
                       Home
                     </Link>
                   </li>
                   <li className="nav-item">
-                    <Link className={"nav-link fLoto"} href="/about">
+                    <Link className={navLinkClass("/about")} href="/about">
                       AboutUs
                     </Link>
                   </li>
                   <li className="nav-item ">
-                    <Link className="nav-link fLoto" href="/waitings">
+                    <Link className={navLinkClass("/waitings")} href="/waitings">
                       waiting times
                     </Link>
                   </li>
                   <li className="nav-item dropdown">
-                    <Link href="/service" className={"nav-link fLoto"}>
+                    <Link href="/service" className={navLinkClass("/service")}>
                       Services
                     </Link>
                     <ul
@@ -220,7 +223,7 @@ const MainMenu = (device, isSlider) => {
                   </li>
 
                   <li className="nav-item">
-                    <Link className={"nav-link fLoto"} href="/career">
+                    <Link className={navLinkClass("/career")} href="/career">
                       Career
                     </Link>
                   </li>
@@ -270,8 +273,5 @@ const MainMenu = (device, isSlider) => {
       </div>
     </nav>
   );
-};
-MainMenu.defaultProps = {
-  device: "mobile" || "desktop",
 };
 export default MainMenu;

@@ -15,16 +15,25 @@ const Page = () => {
   } = useForm();
 
   const onSubmit = async (data) => {
-    console.log(data);
+    // The backend stores the CV and the identity card as files, so the payload
+    // has to go out as multipart/form-data instead of JSON.
+    const payload = new FormData();
+    payload.append("name", data.name);
+    payload.append("email", data.email);
+    payload.append("phone", data.phone);
+    payload.append("postName", data.postName);
+    payload.append("cv", data.cv[0]);
+    payload.append("IdentityCard", data.idCard[0]);
+
     try {
       const res = await axios.post(
-        `${process.env.NEXT_PUBLIC_BACKEND_URL}api/applied-candidates`,
-        data
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}api/applied-candidates/`,
+        payload
       );
       toast.success("Form submitted successfully");
       reset();
     } catch (error) {
-      toast.error("Error submitting form:", error);
+      toast.error("Error submitting form");
     }
   };
 
@@ -102,8 +111,7 @@ const Page = () => {
                 </label>
                 <input
                   {...register("phone", { required: true })}
-                  type="number"
-                  name="phone"
+                  type="tel"
                   className="form-control"
                   id="inputPhone"
                   placeholder="Phone"
@@ -114,13 +122,14 @@ const Page = () => {
               </div>
 
               <div className="mb-3">
-                <label htmlFor="inputPhone" className="form-label">
+                <label htmlFor="inputPostName" className="form-label">
                   Post name
                 </label>
                 <input
                   {...register("postName", { required: true })}
                   type="text"
                   className="form-control"
+                  id="inputPostName"
                   placeholder="Post Name"
                 />
                 {errors.postName && (
@@ -128,32 +137,32 @@ const Page = () => {
                 )}
               </div>
               <div className="mb-3">
-                <label htmlFor="inputPhone" className="form-label">
+                <label htmlFor="inputCv" className="form-label">
                   CV
                 </label>
                 <input
-                  {...register("cv", { required: true })}
+                  {...register("cv", {
+                    validate: (files) => files?.length > 0,
+                  })}
                   type="file"
-                  name="phone"
                   className="form-control"
-                  id="inputPhone"
-                  placeholder="Phone"
+                  id="inputCv"
                 />
                 {errors.cv && (
                   <span className="text-danger">This field is required</span>
                 )}
               </div>
               <div className="mb-3">
-                <label htmlFor="inputPhone" className="form-label">
+                <label htmlFor="inputIdCard" className="form-label">
                   Identity Card
                 </label>
                 <input
-                  {...register("idCard", { required: true })}
+                  {...register("idCard", {
+                    validate: (files) => files?.length > 0,
+                  })}
                   type="file"
-                  name="phone"
                   className="form-control"
-                  id="inputPhone"
-                  placeholder="Phone"
+                  id="inputIdCard"
                 />
                 {errors.idCard && (
                   <span className="text-danger">This field is required</span>

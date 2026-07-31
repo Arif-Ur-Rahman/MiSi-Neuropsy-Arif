@@ -18,7 +18,6 @@ import ServiesText from "./components/service/ServiesText";
 import Prices from "./components/prices/Prices";
 import Header from "./components/header/Header";
 import Hero from "./components/header/Hero";
-import Head from "next/head";
 import { useEffect } from "react";
 import ScrollToTop from "./components/scrolling/ScrollToTop";
 import { ToastContainer } from "react-toastify";
@@ -29,9 +28,6 @@ export default function Home() {
   }, []);
   return (
     <div>
-      <Head>
-        <title>My page title</title>
-      </Head>
       <Header />
       <main className={styles.main}>
         <ToastContainer />

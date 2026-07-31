@@ -11,8 +11,7 @@ const ScrollToTop = () => {
       // Element Section
       var element = document.querySelector(selector);
       var htmlElement = document.querySelector("html");
-      // Listen for the scroll event
-      document.addEventListener('scroll', event => {
+      const onScroll = () => {
         // Check the viewport status
         if (element) {
           if (pxScrolled(htmlElement, percent) > 350) {
@@ -22,10 +21,13 @@ const ScrollToTop = () => {
             element.style.opacity = '0';
           }
         }
-      })
+      };
+      // Listen for the scroll event
+      document.addEventListener('scroll', onScroll)
+      return () => document.removeEventListener('scroll', onScroll)
     };
 
-    visibleOnScroll("#scroll-to-top");
+    return visibleOnScroll("#scroll-to-top");
 
   }, [])
 

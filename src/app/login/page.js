@@ -9,8 +9,10 @@ import "@/app/IdealBankSectionStyles.css";
 import "@/app/responsive.css";
 import "@/app/styles.css";
 import { BiLeftArrowAlt, BiRightArrowAlt } from "react-icons/bi";
+import { useRouter } from "next/navigation";
 import LanguageDropdown from "../components/header/LanguageDropdown";
-const page = () => {
+const Page = () => {
+  const router = useRouter();
   return (
     <div>
       <div className="d-flex align-items-center justify-content-between">
@@ -88,4 +90,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

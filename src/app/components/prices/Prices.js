@@ -31,10 +31,11 @@ const Prices = () => {
 
   useEffect(() => {
     const mediaMatch = window.matchMedia("(min-width: 500px)");
-    if (mediaMatch.matches) {
-      setMatch(true);
-    }
-  });
+    const onChange = (e) => setMatch(e.matches);
+    setMatch(mediaMatch.matches);
+    mediaMatch.addEventListener("change", onChange);
+    return () => mediaMatch.removeEventListener("change", onChange);
+  }, []);
   return (
     <section id="prices">
       <div className="container">
