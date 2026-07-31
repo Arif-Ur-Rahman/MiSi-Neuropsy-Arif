@@ -23,9 +23,10 @@ const Award = () => {
 
   useEffect(() => {
     if (!embla) return;
-    setInterval(() => {
+    const autoplay = setInterval(() => {
       scrollNext();
     }, 3000);
+    return () => clearInterval(autoplay);
   }, [embla, scrollNext]);
 
   const [brandImages, setbrandImages] = useState([]);

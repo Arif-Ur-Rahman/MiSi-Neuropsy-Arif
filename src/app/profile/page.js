@@ -1,5 +1,5 @@
 'use client'
-import React from 'react'
+import React, { useState } from 'react'
 import '@/app/page.module.css'
 import '@/app/booking.css'
 import '@/app/embala.css'
@@ -8,7 +8,13 @@ import '@/app/IdealBankSectionStyles.css'
 import '@/app/responsive.css'
 import '@/app/styles.css'
 import { BiLeftArrowAlt, BiRightArrowAlt } from "react-icons/bi";
-const page = () => {
+const Page = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    password: '',
+    phone: '',
+  })
   return (
     <div>
             <div className='pb-5' style={{ minHeight: '500px', paddingTop: '100px' }}>
@@ -27,19 +33,19 @@ const page = () => {
                                 <form>
                                     <div className="mb-3">
                                         <label htmlFor="inputName" className="form-label">bookingName</label>
-                                        <input type="text" name="name" className="form-control" id="inputName" placeholder="Name" value='' />
+                                        <input type="text" name="name" className="form-control" id="inputName" placeholder="Name" value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })} />
                                     </div>
                                     <div className="mb-3">
                                         <label htmlFor="inputEmail" className="form-label">Email</label>
-                                        <input type="email" name="email" className="form-control" id="inputEmail" placeholder="" value=""onChange={(e) => setSetFromData({ ...formData, email: e.target.value })} />
+                                        <input type="email" name="email" className="form-control" id="inputEmail" placeholder="" value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} />
                                     </div>
                                     <div className="mb-3">
                                         <label htmlFor="inputPassword" className="form-label">Password</label>
-                                        <input type="password" name="password" className="form-control" id="inputPassword" placeholder="Password" value="" onChange={(e) => setSetFromData({ ...formData, password: e.target.value })} />
+                                        <input type="password" name="password" className="form-control" id="inputPassword" placeholder="Password" value={formData.password} onChange={(e) => setFormData({ ...formData, password: e.target.value })} />
                                     </div>
                                     <div className="mb-3">
                                         <label htmlFor="inputPhone" className="form-label">Phone</label>
-                                        <input type="text" name="phone" className="form-control" id="inputPhone" placeholder="Phone" value="" onChange={(e) => setSetFromData({ ...formData, phone: e.target.value })} />
+                                        <input type="text" name="phone" className="form-control" id="inputPhone" placeholder="Phone" value={formData.phone} onChange={(e) => setFormData({ ...formData, phone: e.target.value })} />
                                     </div>
 
                                     <a className="btn-next btn btn-dark" >Save<BiRightArrowAlt className="ms-1" /></a>
@@ -88,4 +94,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page

@@ -20,7 +20,7 @@ const page = () => {
                         <form>
                             <div className="mb-3">
                                 <label htmlFor="inputEmail" className="form-label">Email</label>
-                                <input type="email" name="email" className="form-control" id="inputEmail" placeholder="Enter Email address" value="" />
+                                <input type="email" name="email" className="form-control" id="inputEmail" placeholder="Enter Email address" />
                             </div>
                             <a className="btn-next btn btn-dark">Send code<BiRightArrowAlt className="ms-1" /></a>
 

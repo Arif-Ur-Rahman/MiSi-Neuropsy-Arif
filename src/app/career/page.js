@@ -1,6 +1,5 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import Head from "next/head";
 import "@/app/page.module.css";
 import "@/app/booking.css";
 import "@/app/embala.css";
@@ -12,7 +11,6 @@ import Link from "next/link";
 import Heder from "../components/about/Heder";
 import Image from "next/image";
 import ScrollToTop from "../components/scrolling/ScrollToTop";
-import axios from "axios";
 const Page = () => {
   const [jobs, setJobs] = useState([]);
   useEffect(() => {
@@ -56,18 +54,6 @@ const Page = () => {
   // },
   return (
     <div>
-      <Head>
-        <title>Career</title>
-        <meta
-          name="description"
-          content="Sensehair is a saloon shop website with an appointment/booking system."
-        />
-        <meta
-          name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, shrink-to-fit=no"
-        />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
       <Heder title={"Career"} image={"carHeader"} />
       <ScrollToTop />
       <div className="container py-5">

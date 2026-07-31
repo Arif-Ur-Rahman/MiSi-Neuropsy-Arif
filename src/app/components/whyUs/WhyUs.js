@@ -22,24 +22,6 @@ const WhyUs = () => {
     fetchData();
   }, []);
 
-  useEffect(() => {
-    document.addEventListener("scroll", countUpAnimation);
-  });
-
-  let event = true;
-  const countUpAnimation = () => {
-    if (window.scrollY < 1700) {
-      event = false;
-    } else {
-      if (!event) {
-        event = false;
-        // document.getElementById("clickButton").click();
-        // document.getElementById("clickButton2").click();
-        // document.getElementById("clickButton3").click();
-        // document.getElementById("clickButton4").click();
-      }
-    }
-  };
   return (
     <section id="why-us" className="pt-3">
       <div className="container">

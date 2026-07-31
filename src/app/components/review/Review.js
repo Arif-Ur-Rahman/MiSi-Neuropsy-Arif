@@ -32,10 +32,14 @@ const Review = () => {
     onSelect()
     setScrollSnaps(embla.scrollSnapList())
     embla.on("select", onSelect)
-    setInterval(() => {
+    const autoplay = setInterval(() => {
       scrollNext()
     }, 5000)
-  }, [embla, setScrollSnaps, onSelect])
+    return () => {
+      clearInterval(autoplay)
+      embla.off("select", onSelect)
+    }
+  }, [embla, setScrollSnaps, onSelect, scrollNext])
   return (
     <section id="review" className="text-center py-5">
       <h2 className="quotation text-uppercase" data-aos="fade-up" data-aos-delay="700" data-aos-duration="750" >

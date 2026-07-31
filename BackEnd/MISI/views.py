@@ -53,13 +53,20 @@ class ContactForm(GenericAPIView, CreateModelMixin):
     def post(self, req ,*args, **kwargs ):
         return self.create(req ,*args, **kwargs)
     
-class JobsPost(GenericAPIView, ListModelMixin):
+class JobsPostView(GenericAPIView, ListModelMixin):
     queryset = JobsPost.objects.all()
     serializer_class = JobsPostSerializer
-    
+
     def get(self, req ,*args, **kwargs ):
         return self.list(req ,*args, **kwargs)
-    
+
+class JobsPostDetailsView(GenericAPIView, RetrieveModelMixin):
+    queryset = JobsPost.objects.all()
+    serializer_class = JobsPostSerializer
+
+    def get(self, req ,*args, **kwargs ):
+        return self.retrieve(req ,*args, **kwargs)
+
 class AppliedCandidates(GenericAPIView, CreateModelMixin):
     queryset = AppliedCandidates.objects.all()
     serializer_class = AppliedCandidatesSerializer
