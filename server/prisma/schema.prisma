@@ -1,0 +1,107 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Field names deliberately mirror the JSON keys the frontend already consumes
+// (subTitle, heroImage, details_information, ...) so the API contract is
+// unchanged from the Django version it replaces.
+
+model HeroSlider {
+  id        Int    @id @default(autoincrement())
+  title     String
+  subTitle  String
+  heroImage String?
+
+  @@map("hero_slider")
+}
+
+model Award {
+  id        Int    @id @default(autoincrement())
+  title     String
+  heroImage String?
+
+  @@map("award")
+}
+
+model SpecialEvent {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String   @default("")
+  image       String?
+  startDate   DateTime @db.Date
+  endDate     DateTime @db.Date
+
+  @@map("special_event")
+}
+
+model WhyChooseUs {
+  id                   Int     @id @default(autoincrement())
+  title                String
+  description          String
+  image                String?
+  details_information  String?
+
+  @@map("why_choose_us")
+}
+
+model Service {
+  id          Int    @id @default(autoincrement())
+  href        String
+  name        String
+  description String @default("")
+  image       String?
+
+  @@map("service")
+}
+
+model ClientCouncil {
+  id      Int    @id @default(autoincrement())
+  name    String
+  phone   String
+  message String
+
+  @@map("client_council")
+}
+
+model ContactForm {
+  id      Int    @id @default(autoincrement())
+  name    String
+  email   String
+  subject String
+  message String
+
+  @@map("contact_form")
+}
+
+model JobsPost {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String
+  image       String?
+  category    String
+  vacancy     Int
+  requirement String
+  created_at  DateTime @default(now())
+  endDate     DateTime
+
+  @@map("jobs_post")
+}
+
+model AppliedCandidates {
+  id            Int      @id @default(autoincrement())
+  jobsPostTitle String?
+  name          String
+  email         String
+  phone         String
+  postName      String
+  cv            String
+  identityCard  String
+  created_at    DateTime @default(now())
+
+  @@map("applied_candidates")
+}

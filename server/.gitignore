@@ -1,0 +1,20 @@
+node_modules/
+
+# Secrets: admin password, session secret, database URL
+.env
+.env.local
+.env.*.local
+
+# Runtime media. Content images are seeded from ../BackEnd/media (see README);
+# anything uploaded through the admin or the apply form is local state.
+media/*
+!media/.gitkeep
+
+# Logs and OS noise
+*.log
+npm-debug.log*
+.DS_Store
+
+# Coverage / build output
+coverage/
+dist/
